@@ -109,7 +109,7 @@ Respondent#has(valuePath);
 ## Contributing
 
 Respondent makes use of [mocha]() in order to conduct it's unit tests, thus contributions
-should be made with unit tests relevant to your work.
+should be submitted with unit tests relevant to your work.
 
 ## License
 

@@ -1,6 +1,6 @@
 {
   "name": "respondent",
-  "version": "1.0.1",
+  "version": "1.1.0",
   "description": "A package which allows for modular configuration loading from a specified directory",
   "main": "./build/respondent.js",
   "files": [

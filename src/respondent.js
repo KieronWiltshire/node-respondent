@@ -24,6 +24,14 @@ export default class Respondent {
     if (options.rootDir && typeof options.rootDir === 'string') {
       this._rootDir = options.rootDir;
 
+      if (options.env) {
+        if (typeof options.env === 'object') {
+          process.env = Object.assign({}, process.env, options.env);
+        } else {
+          throw new Error('{options.env} must be an object');
+        }
+      }
+
       this._rfr = rfr({ root: this._rootDir });
     } else {
       throw new Error('{options.rootDir} is required');

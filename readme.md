@@ -10,14 +10,17 @@ The package exports a class that can be instantiated to read configuration files
 
 ## Basic usage
 
-Respondent requires 1 parameter. The path to the root directory of your configuration files.
+Respondent requires 2 parameters. The first being the path to directory of your configuration files. The second being any environment variables you want to pass through to be loaded into your configuration files, the value is appended to the `process.env` global. That means whatever environment variables you pass through can be accessed via `process.env`
 
 ```JavaScript
 const Path = require('path');
 const Respondent = require('respondent');
 
 let config = new Respondent({
-  rootDir: Path.join(__dirname, 'config')
+  rootDir: Path.join(__dirname, 'config'),
+  env: {
+    someEnvValue: 'hello world' // In your configuration files, you can use `process.env.someEnvValue` to access this environment variable
+  }
 });
 ```
 

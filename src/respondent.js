@@ -53,13 +53,22 @@ export default class Respondent {
    * @param {string} valuePath
    * @param {string} defaultValue
    * @returns value
+   * @throws {Error} if the config file argument is "index"
    */
   get(valuePath, defaultValue) {
     let valuePathSplit = valuePath.split('.');
     let value = null;
+
+    let configFile = valuePathSplit[0];
+
+    if (configFile && configFile.toLowerCase() === 'index') {
+      throw new Error('The specified config file cannot be used.');
+    }
+
     try {
-      debug('Attempting to load a configuration value from ' + valuePathSplit[0]);
-      let file = this._rfr(valuePathSplit[0]);
+      debug('Attempting to load a configuration value from ' + configFile);
+
+      let file = this._rfr(configFile);
       value = file;
       for (let i = 1; i < valuePathSplit.length; i++) {
         let exists = false;
@@ -79,7 +88,7 @@ export default class Respondent {
         }
 
         if (exists) {
-          debug('Configuration value loaded from \'' + valuePathSplit[0] + '\'');
+          debug('Configuration value loaded from \'' + configFile + '\'');
           break;
         }
 

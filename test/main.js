@@ -92,4 +92,18 @@ describe('respondent', function() {
     }
   });
 
+  it('should not be able to retrieve a config file "index"', function(done) {
+    try {
+      let config = new Respondent({
+        rootDir: path.join(__dirname, 'config')
+      });
+
+      config.get('index.exists');
+
+      done(new Error('No error was thrown for requiring an "index" config file.'));
+    } catch (error) {
+      done();
+    }
+  });
+
 });
